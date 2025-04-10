@@ -23,15 +23,13 @@ function drawPizzas() {
   background(255);
   numSlices = int(input.value());
   if (numSlices <= 0) return;
-
-
   drawPizzaMidpoint(150, 200, 100, numSlices, 'red', "Punto Medio");
+  drawPizzaMidpoint(370, 200, 100, numSlices, 'blue', "DDA");
+  drawPizzaMidpoint(590, 200, 100, numSlices, 'green', "Bresenham");
 
 
-  drawPizza(370, 200, 100, numSlices, drawLineDDA, 'blue', "DDA");
-
-
-  drawPizza(590, 200, 100, numSlices, drawLineBresenham, 'green', "Bresenham");
+  //drawPizza(370, 200, 100, numSlices, drawLineDDA, 'blue', "DDA");
+  //drawPizza(590, 200, 100, numSlices, drawLineBresenham, 'green', "Bresenham");
 }
 
 function drawPizzaMidpoint(cx, cy, r, slices, color, label) {
@@ -92,7 +90,7 @@ function drawPizza(cx, cy, radius, slices, drawFn, color, label) {
   stroke(color);
   fill(255);
 
-  ellipse(cx, cy, radius * 2, radius * 2);
+  //ellipse(cx, cy, radius * 2, radius * 2);
 
   for (let i = 0; i < slices; i++) {
     let angle = TWO_PI * i / slices;
@@ -123,10 +121,12 @@ function drawLinePointSlope(x1, y1, x2, y2) {
       point(x, y);
     }
   } else {
+
     let m_inv = dx / dy;
     let b = x1 - m_inv * y1;
     let startY = min(y1, y2);
     let endY = max(y1, y2);
+
     for (let y = startY; y <= endY; y++) {
       let x = m_inv * y + b;
       point(x, y);
